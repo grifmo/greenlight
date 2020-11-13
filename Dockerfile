@@ -54,6 +54,9 @@ RUN apk update \
 
 COPY --from=base $RAILS_ROOT $RAILS_ROOT
 
+COPY ./bigbluebutton.srv.bnitm.de.pem  /usr/local/share/ca-certificates/ 
+RUN update-ca-certificates
+RUN rm /etc/ssl/cert.pem && ln -s /etc/ssl/certs/ca-certificates.crt /etc/ssl/cert.pem
 # Expose port 80.
 EXPOSE 80
 
